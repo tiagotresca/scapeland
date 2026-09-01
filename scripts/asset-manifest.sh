@@ -24,21 +24,22 @@ img .assets-tmp/motion-bg.png assets/img/motion-bg.jpg 2400
 drive 1N5-OSMeyoocQ9jrjXz4GmV7IaVUHkkl8 .assets-tmp/sketch.png
 img .assets-tmp/sketch.png assets/img/sketch.jpg 1800
 
-# ————— the family: the same Scapeland house in four settings —————
-fetch "$HF/hf_20260901_130125_d534a029-8c44-4b4a-b3ea-ce050980ee03.png" .assets-tmp/vale.png
-img .assets-tmp/vale.png assets/img/model-vale.jpg 1600
+# ————— the family: Campo (Drive render of the first build), Serra, Costa.
+#        Vale is hidden for now; its generated image stays fetchable below. —————
+drive 1yCmp1zahATveG3RwnD6pZEuiOIxdOEec .assets-tmp/campo.png
+img .assets-tmp/campo.png assets/img/model-campo.jpg 1600
 fetch "$HF/hf_20260901_130125_c240c74e-085b-4252-9f8b-a0cc2dd81cd1.png" .assets-tmp/serra.png
 img .assets-tmp/serra.png assets/img/model-serra.jpg 1600
 fetch "$HF/hf_20260901_130125_051bd85e-87ad-48d3-9aa4-096f14e886de.png" .assets-tmp/costa.png
 img .assets-tmp/costa.png assets/img/model-costa.jpg 1600
-fetch "$HF/hf_20260901_130125_9439cdef-bdf9-440d-9422-19ade3e8ffe6.png" .assets-tmp/campo.png
-img .assets-tmp/campo.png assets/img/model-campo.jpg 1600
+fetch "$HF/hf_20260901_130125_d534a029-8c44-4b4a-b3ea-ce050980ee03.png" .assets-tmp/vale.png
+img .assets-tmp/vale.png assets/img/model-vale.jpg 1600
 
 # ————— House 01 gallery (Drive renders) —————
 drive 1SZew0p1wBgvoDWBYyIvmcohrswNfdk47 .assets-tmp/h01a.png
 img .assets-tmp/h01a.png assets/img/house01-a.jpg 1600
-drive 1yCmp1zahATveG3RwnD6pZEuiOIxdOEec .assets-tmp/h01b.png
-img .assets-tmp/h01b.png assets/img/house01-b.jpg 1600
+drive 1l3dkqbJ_XD4wjt0Qu92bvmf5PRw2xUki .assets-tmp/h01proj.png
+img .assets-tmp/h01proj.png assets/img/house01-project.jpg 1800
 drive 10tLBNkcCJx6_cA_xBkodybHwS_bwIH1M .assets-tmp/h01c.png
 img .assets-tmp/h01c.png assets/img/house01-c.jpg 1600
 
