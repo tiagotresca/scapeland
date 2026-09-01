@@ -569,6 +569,9 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   .reserve__field--wide { grid-column: 1 / -1; }
 }
 .reserve__field { display: flex; flex-direction: column; gap: 0.45rem; }
+.reserve__phone { display: flex; gap: 0.8rem; }
+.reserve__dial { flex: 0 0 7.2rem; }
+.reserve__phone-num { flex: 1; min-width: 0; }
 .reserve__label {
   font-family: var(--display);
   font-size: 0.68rem;

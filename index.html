@@ -259,7 +259,7 @@
 
     <form class="reserve reveal" id="reserve-form" novalidate>
       <div class="reserve__grid">
-        <label class="reserve__field">
+        <label class="reserve__field reserve__field--wide">
           <span class="reserve__label">Name</span>
           <input class="reserve__input" type="text" name="name" autocomplete="name" required>
         </label>
@@ -267,21 +267,17 @@
           <span class="reserve__label">Email</span>
           <input class="reserve__input" type="email" name="email" autocomplete="email" required>
         </label>
-        <label class="reserve__field">
-          <span class="reserve__label">Model</span>
-          <select class="reserve__input" name="model">
-            <option value="Campo" selected>Campo — the open-land house</option>
-            <option value="Serra">Serra — the hillside house</option>
-            <option value="Costa">Costa — the coastal house</option>
-            <option value="Undecided">Still deciding</option>
-          </select>
-        </label>
-        <label class="reserve__field reserve__field--wide">
-          <span class="reserve__label">Where is your land, or where would it be? <em>(optional)</em></span>
-          <input class="reserve__input" type="text" name="message">
-        </label>
+        <div class="reserve__field">
+          <span class="reserve__label" id="phone-label">Phone</span>
+          <div class="reserve__phone">
+            <select class="reserve__input reserve__dial" name="dial" aria-labelledby="phone-label" aria-label="Country code">
+              <option value="+351" selected>🇵🇹 +351</option>
+            </select>
+            <input class="reserve__input reserve__phone-num" type="tel" name="phone" inputmode="tel" autocomplete="tel-national" aria-labelledby="phone-label" required>
+          </div>
+        </div>
       </div>
-      <p class="reserve__error" id="reserve-error" hidden>Please add your name and a valid email.</p>
+      <p class="reserve__error" id="reserve-error" hidden>Please add your name, a valid email and a phone number.</p>
       <button type="submit" class="close__cta reserve__submit">Reserve early access</button>
     </form>
 

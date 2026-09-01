@@ -1,11 +1,35 @@
 /* Scapeland — scroll reveals, motion section, video handling, reserve form */
 
-/* Where reservation submissions go. Point this at a Formspree/Klaviyo/own
-   endpoint (POST, JSON body) when one exists; while empty, submissions fall
-   back to a pre-filled email to RESERVE_EMAIL. A host page may also define
+/* Where reservation leads go. Set this to the Google Apps Script Web App URL
+   (see docs/DEPLOY.md) — each lead is appended as a row in the "Scapeland
+   Leads" Google Sheet. While empty, submissions fall back to a pre-filled
+   email to RESERVE_EMAIL. A host page may also define
    window.SCAPELAND_SUBMIT(data) -> Promise to take over delivery. */
 var FORM_ENDPOINT = '';
 var RESERVE_EMAIL = 'hello@scapeland.com';
+
+/* Country dial codes for the phone field; Portugal default. */
+var DIAL_CODES = [
+  ['PT', '🇵🇹', '+351'], ['ES', '🇪🇸', '+34'], ['FR', '🇫🇷', '+33'], ['GB', '🇬🇧', '+44'],
+  ['DE', '🇩🇪', '+49'], ['IT', '🇮🇹', '+39'], ['NL', '🇳🇱', '+31'], ['BE', '🇧🇪', '+32'],
+  ['LU', '🇱🇺', '+352'], ['CH', '🇨🇭', '+41'], ['AT', '🇦🇹', '+43'], ['IE', '🇮🇪', '+353'],
+  ['DK', '🇩🇰', '+45'], ['SE', '🇸🇪', '+46'], ['NO', '🇳🇴', '+47'], ['FI', '🇫🇮', '+358'],
+  ['IS', '🇮🇸', '+354'], ['PL', '🇵🇱', '+48'], ['CZ', '🇨🇿', '+420'], ['SK', '🇸🇰', '+421'],
+  ['HU', '🇭🇺', '+36'], ['RO', '🇷🇴', '+40'], ['BG', '🇧🇬', '+359'], ['GR', '🇬🇷', '+30'],
+  ['HR', '🇭🇷', '+385'], ['SI', '🇸🇮', '+386'], ['RS', '🇷🇸', '+381'], ['UA', '🇺🇦', '+380'],
+  ['EE', '🇪🇪', '+372'], ['LV', '🇱🇻', '+371'], ['LT', '🇱🇹', '+370'], ['MT', '🇲🇹', '+356'],
+  ['CY', '🇨🇾', '+357'], ['TR', '🇹🇷', '+90'], ['US', '🇺🇸', '+1'], ['CA', '🇨🇦', '+1'],
+  ['MX', '🇲🇽', '+52'], ['BR', '🇧🇷', '+55'], ['AR', '🇦🇷', '+54'], ['CL', '🇨🇱', '+56'],
+  ['CO', '🇨🇴', '+57'], ['PE', '🇵🇪', '+51'], ['UY', '🇺🇾', '+598'], ['VE', '🇻🇪', '+58'],
+  ['MA', '🇲🇦', '+212'], ['DZ', '🇩🇿', '+213'], ['TN', '🇹🇳', '+216'], ['EG', '🇪🇬', '+20'],
+  ['ZA', '🇿🇦', '+27'], ['AO', '🇦🇴', '+244'], ['MZ', '🇲🇿', '+258'], ['CV', '🇨🇻', '+238'],
+  ['GW', '🇬🇼', '+245'], ['ST', '🇸🇹', '+239'], ['TL', '🇹🇱', '+670'], ['MO', '🇲🇴', '+853'],
+  ['AE', '🇦🇪', '+971'], ['SA', '🇸🇦', '+966'], ['QA', '🇶🇦', '+974'], ['IL', '🇮🇱', '+972'],
+  ['IN', '🇮🇳', '+91'], ['CN', '🇨🇳', '+86'], ['JP', '🇯🇵', '+81'], ['KR', '🇰🇷', '+82'],
+  ['SG', '🇸🇬', '+65'], ['HK', '🇭🇰', '+852'], ['TH', '🇹🇭', '+66'], ['ID', '🇮🇩', '+62'],
+  ['MY', '🇲🇾', '+60'], ['PH', '🇵🇭', '+63'], ['VN', '🇻🇳', '+84'], ['AU', '🇦🇺', '+61'],
+  ['NZ', '🇳🇿', '+64'], ['RU', '🇷🇺', '+7']
+];
 
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -70,22 +94,36 @@ var RESERVE_EMAIL = 'hello@scapeland.com';
   var done = document.getElementById('reserve-done');
   var errEl = document.getElementById('reserve-error');
 
+  /* Fill the dial-code dropdown (PT stays default). */
+  if (form) {
+    var dial = form.querySelector('.reserve__dial');
+    dial.innerHTML = '';
+    DIAL_CODES.forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = c[2];
+      o.textContent = c[1] + ' ' + c[2];
+      o.setAttribute('data-country', c[0]);
+      if (c[0] === 'PT') o.selected = true;
+      dial.appendChild(o);
+    });
+  }
+
   function deliver(data) {
     if (typeof window.SCAPELAND_SUBMIT === 'function') {
       return Promise.resolve(window.SCAPELAND_SUBMIT(data));
     }
     if (FORM_ENDPOINT) {
+      /* Apps Script web apps don't answer CORS preflights, so send the lead
+         as an opaque no-cors POST; delivery is fire-and-forget. */
       return fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data)
-      }).then(function (r) {
-        if (!r.ok) throw new Error('endpoint ' + r.status);
       });
     }
     /* No endpoint configured: open a pre-filled email. */
-    var body = 'Name: ' + data.name + '\nEmail: ' + data.email +
-      '\nModel: ' + data.model + '\nLand: ' + (data.message || '-');
+    var body = 'Name: ' + data.name + '\nEmail: ' + data.email + '\nPhone: ' + data.phone;
     window.location.href = 'mailto:' + RESERVE_EMAIL +
       '?subject=' + encodeURIComponent('Early access — ' + data.name) +
       '&body=' + encodeURIComponent(body);
@@ -95,14 +133,14 @@ var RESERVE_EMAIL = 'hello@scapeland.com';
   if (form) {
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
+      var num = form.phone.value.replace(/[^\d]/g, '');
       var data = {
         name: form.name.value.trim(),
         email: form.email.value.trim(),
-        model: form.model.value,
-        message: form.message.value.trim(),
+        phone: form.dial.value + ' ' + form.phone.value.trim(),
         at: new Date().toISOString()
       };
-      var valid = data.name && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+      var valid = data.name && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email) && num.length >= 6;
       errEl.hidden = !!valid;
       if (!valid) return;
       var btn = form.querySelector('.reserve__submit');
