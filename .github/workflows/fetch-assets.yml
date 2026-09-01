@@ -1,0 +1,27 @@
+name: Fetch and optimize brand assets
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch, optimize and commit assets
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq imagemagick ffmpeg
+          bash scripts/fetch-assets.sh
+
+      - name: Commit assets
+        run: |
+          git config user.name "scapeland-assets-bot"
+          git config user.email "actions@github.com"
+          git add -A assets/img assets/media
+          git diff --cached --quiet && echo "No asset changes" && exit 0
+          git commit -m "Add optimized brand assets (images + motion video)"
+          git push
