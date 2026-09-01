@@ -24,14 +24,14 @@ img .assets-tmp/motion-bg.png assets/img/motion-bg.jpg 2400
 drive 1N5-OSMeyoocQ9jrjXz4GmV7IaVUHkkl8 .assets-tmp/sketch.png
 img .assets-tmp/sketch.png assets/img/sketch.jpg 1800
 
-# ————— the family: four house models (editorial set) —————
-fetch "$HF/hf_20260901_103633_4aea4449-4c6d-439c-93ac-f4f3fc628d34.png" .assets-tmp/vale.png
+# ————— the family: the same Scapeland house in four settings —————
+fetch "$HF/hf_20260901_130125_d534a029-8c44-4b4a-b3ea-ce050980ee03.png" .assets-tmp/vale.png
 img .assets-tmp/vale.png assets/img/model-vale.jpg 1600
-fetch "$HF/hf_20260901_103633_179ca841-d88d-4d54-b766-3b188438e730.png" .assets-tmp/serra.png
+fetch "$HF/hf_20260901_130125_c240c74e-085b-4252-9f8b-a0cc2dd81cd1.png" .assets-tmp/serra.png
 img .assets-tmp/serra.png assets/img/model-serra.jpg 1600
-fetch "$HF/hf_20260901_103634_a903fec3-5324-4bd8-9e1e-ec74cdbfd65f.png" .assets-tmp/costa.png
+fetch "$HF/hf_20260901_130125_051bd85e-87ad-48d3-9aa4-096f14e886de.png" .assets-tmp/costa.png
 img .assets-tmp/costa.png assets/img/model-costa.jpg 1600
-fetch "$HF/hf_20260901_103633_e4f51c22-e6f6-43f3-9f02-43f9fd4fc31f.png" .assets-tmp/campo.png
+fetch "$HF/hf_20260901_130125_9439cdef-bdf9-440d-9422-19ade3e8ffe6.png" .assets-tmp/campo.png
 img .assets-tmp/campo.png assets/img/model-campo.jpg 1600
 
 # ————— House 01 gallery (Drive renders) —————
