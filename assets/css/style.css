@@ -364,7 +364,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   }
   .solid__fig img { height: 52svh; }
 
-  .glt--active { position: relative; height: 430svh; }
+  .glt--active { position: relative; } /* height set by JS: viewport + exact horizontal travel */
   .glt--active .glt__sticky {
     position: sticky;
     top: 0;

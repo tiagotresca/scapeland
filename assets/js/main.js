@@ -74,30 +74,50 @@ var DIAL_CODES = [
   var glt = document.getElementById('glt');
   var strip = glt && glt.querySelector('.solid__figures');
   var mqMobile = window.matchMedia('(max-width: 47.99rem)');
+  var gltMax = 0;
+
+  /* Measure the horizontal travel with the transform cleared (Safari can
+     misreport scrollWidth on transformed elements) and give the track
+     exactly viewport + travel of height, so the pin releases the moment
+     the last figure is fully on screen. */
+  function gltMeasure() {
+    if (!glt.classList.contains('glt--active')) return;
+    var prev = strip.style.transform;
+    strip.style.transform = 'none';
+    gltMax = Math.max(0, strip.scrollWidth - document.documentElement.clientWidth);
+    strip.style.transform = prev;
+    glt.style.height = (window.innerHeight + gltMax) + 'px';
+  }
 
   function gltMode() {
     if (!glt) return;
     var active = mqMobile.matches && !reduced;
     glt.classList.toggle('glt--active', active);
-    if (!active && strip) strip.style.transform = '';
+    if (!active && strip) {
+      strip.style.transform = '';
+      glt.style.height = '';
+    } else {
+      gltMeasure();
+    }
     onGltScroll();
   }
 
   function onGltScroll() {
-    if (!glt || !strip || !glt.classList.contains('glt--active')) return;
-    var rect = glt.getBoundingClientRect();
-    var total = rect.height - window.innerHeight;
-    if (total <= 0) return;
-    var progress = Math.min(1, Math.max(0, -rect.top / total));
-    var max = strip.scrollWidth - window.innerWidth;
-    if (max > 0) strip.style.transform = 'translateX(' + (-progress * max) + 'px)';
+    if (!glt || !strip || !glt.classList.contains('glt--active') || gltMax <= 0) return;
+    var top = glt.getBoundingClientRect().top;
+    var progress = Math.min(1, Math.max(0, -top / gltMax));
+    strip.style.transform = 'translateX(' + (-progress * gltMax) + 'px)';
   }
 
-  if (glt) {
+  function gltRefresh() { gltMeasure(); onGltScroll(); }
+
+  if (glt && strip) {
     gltMode();
     if (mqMobile.addEventListener) mqMobile.addEventListener('change', gltMode);
     window.addEventListener('scroll', onGltScroll, { passive: true });
-    window.addEventListener('resize', onGltScroll, { passive: true });
+    window.addEventListener('resize', gltRefresh, { passive: true });
+    window.addEventListener('orientationchange', gltRefresh);
+    window.addEventListener('load', gltRefresh);
   }
 
   /* Hero film: pause under reduced motion; otherwise play only while visible. */
