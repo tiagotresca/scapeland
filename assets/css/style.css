@@ -113,6 +113,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 /* ————— hero ————— */
 .hero {
   position: relative;
+  min-height: 100vh;
   min-height: 100svh;
   display: grid;
   place-items: end start;
@@ -140,7 +141,7 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   font-weight: 500;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--grey-on-ink);
+  color: rgba(245, 242, 236, 0.78);
   margin-bottom: 1.6rem;
   animation: heroIn 1.1s 0.15s cubic-bezier(0.22,1,0.36,1) both;
 }

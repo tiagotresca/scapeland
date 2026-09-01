@@ -39,7 +39,7 @@ drive 1SZew0p1wBgvoDWBYyIvmcohrswNfdk47 .assets-tmp/h01a.png
 img .assets-tmp/h01a.png assets/img/house01-a.jpg 1600
 drive 1yCmp1zahATveG3RwnD6pZEuiOIxdOEec .assets-tmp/h01b.png
 img .assets-tmp/h01b.png assets/img/house01-b.jpg 1600
-drive 10tLBNkcCJx6_cA_xBkodybHwS_bwIH1M .assets-tmp/h01c.png
+drive 19Iher5FGsC9_KFWUJnS8L-ifG5qQfRdC .assets-tmp/h01c.png
 img .assets-tmp/h01c.png assets/img/house01-c.jpg 1600
 
 # ————— bleed + inhabit (editorial set) —————
