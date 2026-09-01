@@ -69,6 +69,37 @@ var DIAL_CODES = [
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* GLT strip — on mobile, vertical scroll drives the figures sideways
+     so every image passes through the viewport. */
+  var glt = document.getElementById('glt');
+  var strip = glt && glt.querySelector('.solid__figures');
+  var mqMobile = window.matchMedia('(max-width: 47.99rem)');
+
+  function gltMode() {
+    if (!glt) return;
+    var active = mqMobile.matches && !reduced;
+    glt.classList.toggle('glt--active', active);
+    if (!active && strip) strip.style.transform = '';
+    onGltScroll();
+  }
+
+  function onGltScroll() {
+    if (!glt || !strip || !glt.classList.contains('glt--active')) return;
+    var rect = glt.getBoundingClientRect();
+    var total = rect.height - window.innerHeight;
+    if (total <= 0) return;
+    var progress = Math.min(1, Math.max(0, -rect.top / total));
+    var max = strip.scrollWidth - window.innerWidth;
+    if (max > 0) strip.style.transform = 'translateX(' + (-progress * max) + 'px)';
+  }
+
+  if (glt) {
+    gltMode();
+    if (mqMobile.addEventListener) mqMobile.addEventListener('change', gltMode);
+    window.addEventListener('scroll', onGltScroll, { passive: true });
+    window.addEventListener('resize', onGltScroll, { passive: true });
+  }
+
   /* Hero film: pause under reduced motion; otherwise play only while visible. */
   if (video) {
     if (reduced) {

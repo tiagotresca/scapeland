@@ -347,6 +347,43 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   color: var(--grey-on-ink);
 }
 
+/* Mobile: the four figures become a horizontal strip. Baseline is a
+   swipeable scroll-snap gallery; when JS is active (and motion allowed)
+   the section pins and vertical scroll drives it sideways through all four. */
+@media (max-width: 47.99rem) {
+  .solid__figures {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .solid__fig {
+    flex: 0 0 86vw;
+    scroll-snap-align: center;
+  }
+  .solid__fig img { height: 52svh; }
+
+  .glt--active { position: relative; height: 430svh; }
+  .glt--active .glt__sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+  }
+  .glt--active .solid__figures {
+    overflow: visible;
+    width: max-content;
+    padding-left: var(--pad);
+    padding-bottom: 0;
+    gap: 4vw;
+    will-change: transform;
+  }
+  .glt--active .solid__fig { flex: 0 0 82vw; }
+}
+
 /* ————— stats ————— */
 .stats {
   background: var(--ink);
