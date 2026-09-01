@@ -12,9 +12,14 @@ img .assets-tmp/hero.png assets/img/hero.jpg 2400
 
 # ————— hero/motion loop: aerial drone over the montado (Drive v1) —————
 fetch "https://drive.usercontent.google.com/download?id=1pLeMb5ifd767ODI4QA7ZZjlnNtlRY8jl&export=download&confirm=t" .assets-tmp/motion-src.mp4
-ffmpeg -y -i .assets-tmp/motion-src.mp4 -t 30 -an \
-  -vf "scale=1600:-2" -c:v libx264 -crf 27 -preset slow -movflags +faststart \
+# desktop: native 1080p, high quality
+ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
+  -vf "scale=1920:-2" -c:v libx264 -crf 21 -preset slow -profile:v high -movflags +faststart \
   assets/media/motion.mp4
+# mobile: lighter rendition, swapped in by main.js on small screens
+ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
+  -vf "scale=960:-2" -c:v libx264 -crf 25 -preset slow -movflags +faststart \
+  assets/media/motion-mobile.mp4
 
 # ————— motion section still: House 01 twilight facade —————
 drive 19Iher5FGsC9_KFWUJnS8L-ifG5qQfRdC .assets-tmp/motion-bg.png

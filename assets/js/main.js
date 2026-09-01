@@ -120,6 +120,14 @@ var DIAL_CODES = [
     window.addEventListener('load', gltRefresh);
   }
 
+  /* Hero film: lighter rendition on small screens (swap before it loads). */
+  if (video && window.matchMedia('(max-width: 47.99rem)').matches) {
+    var heroSrc = video.getAttribute('src');
+    if (heroSrc && heroSrc.indexOf('motion.mp4') !== -1) {
+      video.src = heroSrc.replace('motion.mp4', 'motion-mobile.mp4');
+    }
+  }
+
   /* Hero film: pause under reduced motion; otherwise play only while visible. */
   if (video) {
     if (reduced) {
