@@ -49,8 +49,10 @@ drive 10tLBNkcCJx6_cA_xBkodybHwS_bwIH1M .assets-tmp/h01c.png
 img .assets-tmp/h01c.png assets/img/house01-c.jpg 1600
 
 # ————— wellbeing: pavilion, interiors, farm garden (3D set) —————
-fetch "$HF/hf_20260901_185754_e460df1f-4b79-4297-be7f-cc1e87a27b6a.png" .assets-tmp/wpav.png
-img .assets-tmp/wpav.png assets/img/well-pavilion.jpg 1600
+fetch "$HF/hf_20260901_192016_758b4344-9af1-44e5-b94f-22e4ff3ad052.png" .assets-tmp/wpava.png
+img .assets-tmp/wpava.png assets/img/well-pav-a.jpg 1600
+fetch "$HF/hf_20260901_192016_6527b15c-6791-4871-843a-e04551af380f.png" .assets-tmp/wpavb.png
+img .assets-tmp/wpavb.png assets/img/well-pav-b.jpg 1600
 fetch "$HF/hf_20260901_185754_61946e90-22a6-4c39-87ab-d9bcc2a848f4.png" .assets-tmp/wrel.png
 img .assets-tmp/wrel.png assets/img/well-relax.jpg 1600
 fetch "$HF/hf_20260901_185754_2e799310-9928-4da4-ae65-ce9ced51134d.png" .assets-tmp/wgym.png
