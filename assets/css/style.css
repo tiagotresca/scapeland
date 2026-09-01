@@ -336,18 +336,19 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   margin-bottom: 0.5rem;
 }
 
-.solid__craft {
+.solid__figures {
   margin-top: clamp(4rem, 9vw, 7rem);
+  display: grid;
+  gap: 2px;
+  padding-bottom: clamp(4rem, 9vw, 7rem);
 }
-.solid__craft img { width: 100%; height: clamp(18rem, 55vh, 34rem); object-fit: cover; }
-.solid__craft figcaption {
-  padding: 1.1rem var(--pad) 0;
-  max-width: 74rem;
-  margin-inline: auto;
+@media (min-width: 48rem) { .solid__figures { grid-template-columns: 1fr 1fr; } }
+.solid__fig img { width: 100%; height: clamp(16rem, 48vh, 30rem); object-fit: cover; }
+.solid__fig figcaption {
+  padding: 1rem var(--pad) 0;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
   color: var(--grey-on-ink);
-  padding-bottom: clamp(4rem, 9vw, 7rem);
 }
 
 /* ————— stats ————— */
@@ -441,6 +442,42 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 @media (min-width: 48rem) {
   .house:nth-child(even) { transform: translateY(clamp(0rem, 4vw, 3.5rem)); }
 }
+
+/* ————— house 01 ————— */
+.house01 {
+  background: var(--paper-dim);
+  padding-block: clamp(6rem, 14vh, 11rem);
+}
+.house01__head {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+  max-width: 44rem;
+}
+.house01__head .eyebrow { margin-bottom: 0; }
+.house01__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.house01__intro { color: var(--grey-on-paper); max-width: 34rem; }
+.house01__grid {
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 48rem) {
+  .house01__grid {
+    grid-template-columns: repeat(12, 1fr);
+    align-items: start;
+  }
+  .house01__item--a { grid-column: 1 / 8; }
+  .house01__item--b { grid-column: 8 / 13; margin-top: clamp(2rem, 6vw, 5rem); }
+  .house01__item--c { grid-column: 3 / 11; margin-top: clamp(1rem, 3vw, 2.5rem); }
+}
+.house01__item img { width: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
 
 /* ————— bleed ————— */
 .bleed {
