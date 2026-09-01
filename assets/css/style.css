@@ -512,6 +512,65 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 }
 .house01__item img { width: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
 
+/* ————— wellbeing ————— */
+.well {
+  background: var(--paper);
+  padding-block: clamp(6rem, 14vh, 11rem);
+}
+.well__head {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+@media (min-width: 56rem) {
+  .well__head { grid-template-columns: 1.1fr 1fr; align-items: end; }
+}
+.well__title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+.well__intro { max-width: 30rem; color: var(--grey-on-paper); }
+.well__list { list-style: none; }
+.well__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem 1.5rem;
+  padding-block: clamp(1.4rem, 2.6vw, 2rem);
+  border-top: 1px solid var(--line-on-paper);
+}
+@media (min-width: 56rem) {
+  .well__row { grid-template-columns: 20rem 1fr; align-items: baseline; }
+}
+.well__name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.well__desc { max-width: 38rem; color: var(--grey-on-paper); font-size: 0.95rem; }
+.well__label {
+  display: block;
+  font-family: var(--display);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.45rem;
+}
+.well__note {
+  margin-top: 2.2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--grey-on-paper);
+}
+
 /* ————— bleed ————— */
 .bleed {
   position: relative;
