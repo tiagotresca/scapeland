@@ -14,7 +14,7 @@ img .assets-tmp/hero.png assets/img/hero.jpg 2400
 fetch "https://drive.usercontent.google.com/download?id=1pLeMb5ifd767ODI4QA7ZZjlnNtlRY8jl&export=download&confirm=t" .assets-tmp/motion-src.mp4
 # desktop: native 1080p, high quality
 ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
-  -vf "scale=1920:-2" -c:v libx264 -crf 21 -preset slow -profile:v high -movflags +faststart \
+  -vf "scale=1920:-2" -c:v libx264 -crf 23 -preset slow -profile:v high -movflags +faststart \
   assets/media/motion.mp4
 # mobile: lighter rendition, swapped in by main.js on small screens
 ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
