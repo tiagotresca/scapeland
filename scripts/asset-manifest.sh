@@ -10,19 +10,19 @@ HF=https://d8j0ntlcm91z4.cloudfront.net/user_3DHR71Nhb8BxDxiD3b5RHP9REhm
 drive 1ewv6F4fDF5l6NJ1_PsPoOP4fA5Ljptk0 .assets-tmp/hero.png
 img .assets-tmp/hero.png assets/img/hero.jpg 2400
 
-# ————— motion video: aerial drone over the montado (Drive v1) —————
+# ————— hero/motion loop: aerial drone over the montado (Drive v1) —————
 fetch "https://drive.usercontent.google.com/download?id=1pLeMb5ifd767ODI4QA7ZZjlnNtlRY8jl&export=download&confirm=t" .assets-tmp/motion-src.mp4
 ffmpeg -y -i .assets-tmp/motion-src.mp4 -t 30 -an \
   -vf "scale=1600:-2" -c:v libx264 -crf 27 -preset slow -movflags +faststart \
   assets/media/motion.mp4
-drive 127M92VYMszFe0Ye7A2XX-QFXx5LJY6gX .assets-tmp/motion-poster.png
-img .assets-tmp/motion-poster.png assets/img/motion-poster.jpg 1600
 
-# ————— Solid section: hand sketch + timber detail —————
+# ————— motion section still: House 01 twilight facade —————
+drive 19Iher5FGsC9_KFWUJnS8L-ifG5qQfRdC .assets-tmp/motion-bg.png
+img .assets-tmp/motion-bg.png assets/img/motion-bg.jpg 2400
+
+# ————— Solid section: hand sketch (GLT factory photos are committed directly) —————
 drive 1N5-OSMeyoocQ9jrjXz4GmV7IaVUHkkl8 .assets-tmp/sketch.png
 img .assets-tmp/sketch.png assets/img/sketch.jpg 1800
-fetch "$HF/hf_20260901_103633_69899f9a-f99b-4ea2-9cb4-319c3c5be652.png" .assets-tmp/craft.png
-img .assets-tmp/craft.png assets/img/craft.jpg 2000
 
 # ————— the family: four house models (editorial set) —————
 fetch "$HF/hf_20260901_103633_4aea4449-4c6d-439c-93ac-f4f3fc628d34.png" .assets-tmp/vale.png
@@ -39,7 +39,7 @@ drive 1SZew0p1wBgvoDWBYyIvmcohrswNfdk47 .assets-tmp/h01a.png
 img .assets-tmp/h01a.png assets/img/house01-a.jpg 1600
 drive 1yCmp1zahATveG3RwnD6pZEuiOIxdOEec .assets-tmp/h01b.png
 img .assets-tmp/h01b.png assets/img/house01-b.jpg 1600
-drive 19Iher5FGsC9_KFWUJnS8L-ifG5qQfRdC .assets-tmp/h01c.png
+drive 10tLBNkcCJx6_cA_xBkodybHwS_bwIH1M .assets-tmp/h01c.png
 img .assets-tmp/h01c.png assets/img/house01-c.jpg 1600
 
 # ————— bleed + inhabit (editorial set) —————
