@@ -20,7 +20,7 @@
 
   /* Motion section — sticky video with two panels */
   var track = document.querySelector('.motion__track');
-  var video = document.querySelector('.motion__video');
+  var video = document.querySelector('video.motion__video');
   var panels = document.querySelectorAll('.motion__panel');
 
   function onScroll() {
