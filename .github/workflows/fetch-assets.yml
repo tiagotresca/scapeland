@@ -2,6 +2,10 @@ name: Fetch and optimize brand assets
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "scripts/asset-manifest.sh"
+      - ".github/workflows/fetch-assets.yml"
 
 permissions:
   contents: write
