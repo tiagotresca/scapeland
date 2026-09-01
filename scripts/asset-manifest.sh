@@ -48,6 +48,16 @@ img .assets-tmp/h01proj.png assets/img/house01-project.jpg 1800
 drive 10tLBNkcCJx6_cA_xBkodybHwS_bwIH1M .assets-tmp/h01c.png
 img .assets-tmp/h01c.png assets/img/house01-c.jpg 1600
 
+# ————— wellbeing: pavilion, interiors, farm garden (3D set) —————
+fetch "$HF/hf_20260901_185754_e460df1f-4b79-4297-be7f-cc1e87a27b6a.png" .assets-tmp/wpav.png
+img .assets-tmp/wpav.png assets/img/well-pavilion.jpg 1600
+fetch "$HF/hf_20260901_185754_61946e90-22a6-4c39-87ab-d9bcc2a848f4.png" .assets-tmp/wrel.png
+img .assets-tmp/wrel.png assets/img/well-relax.jpg 1600
+fetch "$HF/hf_20260901_185754_2e799310-9928-4da4-ae65-ce9ced51134d.png" .assets-tmp/wgym.png
+img .assets-tmp/wgym.png assets/img/well-gym.jpg 1600
+fetch "$HF/hf_20260901_185754_d8f4363f-0175-4e67-b3bc-d1ccdc6bb0dc.png" .assets-tmp/wgar.png
+img .assets-tmp/wgar.png assets/img/well-garden.jpg 1600
+
 # ————— bleed + inhabit (editorial set) —————
 fetch "$HF/hf_20260901_103633_5e7a2fce-d6c8-4f4c-8116-57c268aa1be6.png" .assets-tmp/walk.png
 img .assets-tmp/walk.png assets/img/walk.jpg 2400
