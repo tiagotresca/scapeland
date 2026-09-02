@@ -23,11 +23,8 @@
 <nav class="nav" id="nav">
   <a class="nav__mark" href="#top" aria-label="Scapeland"><svg viewBox="0 0 4088 248" aria-hidden="true" focusable="false"><use href="#scapeland-wordmark"></use></svg></a>
   <div class="nav__links">
-    <a href="#argument">Manifesto</a>
-    <a href="#wellbeing">Wellbeing</a>
-    <a href="#solid">Solid</a>
-    <a href="#houses">Houses</a>
-    <a href="#close" class="nav__cta">Reserve</a>
+    <a href="/kept">Kept</a>
+    <a href="/reserve" class="nav__cta">Reserve</a>
   </div>
 </nav>
 
@@ -304,34 +301,7 @@
     <h2 class="close__manifesto reveal">Luxury <em>is</em> outside.</h2>
     <p class="close__sub reveal">It always was. Reservations open for the first twelve houses.</p>
 
-    <form class="reserve reveal" id="reserve-form" novalidate>
-      <div class="reserve__grid">
-        <label class="reserve__field reserve__field--wide">
-          <span class="reserve__label">Name</span>
-          <input class="reserve__input" type="text" name="name" autocomplete="name" required>
-        </label>
-        <label class="reserve__field">
-          <span class="reserve__label">Email</span>
-          <input class="reserve__input" type="email" name="email" autocomplete="email" required>
-        </label>
-        <div class="reserve__field">
-          <span class="reserve__label" id="phone-label">Phone</span>
-          <div class="reserve__phone">
-            <select class="reserve__input reserve__dial" name="dial" aria-labelledby="phone-label" aria-label="Country code">
-              <option value="+351" selected>🇵🇹 +351</option>
-            </select>
-            <input class="reserve__input reserve__phone-num" type="tel" name="phone" inputmode="tel" autocomplete="tel-national" aria-labelledby="phone-label" required>
-          </div>
-        </div>
-      </div>
-      <p class="reserve__error" id="reserve-error" hidden>Please add your name, a valid email and a phone number.</p>
-      <button type="submit" class="close__cta reserve__submit">Reserve early access</button>
-    </form>
-
-    <div class="reserve__done" id="reserve-done" hidden>
-      <p class="reserve__done-title">Received.</p>
-      <p class="reserve__done-body">You are on the list for the first twelve. We will be in touch — quietly, and only when there is something worth saying.</p>
-    </div>
+    <a href="/reserve" class="close__cta reveal">Reserve early access</a>
   </div>
 </section>
 

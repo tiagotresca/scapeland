@@ -58,9 +58,17 @@ img .assets-tmp/wgym.png assets/img/well-gym.jpg 1600
 fetch "$HF/hf_20260901_185754_d8f4363f-0175-4e67-b3bc-d1ccdc6bb0dc.png" .assets-tmp/wgar.png
 img .assets-tmp/wgar.png assets/img/well-garden.jpg 1600
 
-# ————— kept (owner's service page): arrival kitchen —————
+# ————— kept (owner's service page): arrival kitchen + services —————
 fetch "$HF/hf_20260902_143830_5fb47911-1723-485c-b11d-7f9c5cdda16e.png" .assets-tmp/kept.png
 img .assets-tmp/kept.png assets/img/kept-arrival.jpg 1600
+fetch "$HF/hf_20260902_145933_5de31a2f-ee9e-4941-81dc-4575d936d2b7.png" .assets-tmp/kmud.png
+img .assets-tmp/kmud.png assets/img/kept-mud.jpg 1400
+fetch "$HF/hf_20260902_145932_6057a9b7-a65d-43b4-a53e-dc43e85192b9.png" .assets-tmp/kpil.png
+img .assets-tmp/kpil.png assets/img/kept-pilates.jpg 1400
+fetch "$HF/hf_20260902_145932_3e4216ce-c680-46ca-bbf9-e00f280eda1e.png" .assets-tmp/kmas.png
+img .assets-tmp/kmas.png assets/img/kept-massage.jpg 1400
+fetch "$HF/hf_20260902_145932_cd74c034-8c50-43c2-ae1f-3afe148472db.png" .assets-tmp/knut.png
+img .assets-tmp/knut.png assets/img/kept-nutrition.jpg 1400
 
 # ————— bleed + inhabit (editorial set) —————
 fetch "$HF/hf_20260901_103633_5e7a2fce-d6c8-4f4c-8116-57c268aa1be6.png" .assets-tmp/walk.png

@@ -103,7 +103,10 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 .nav__links a { opacity: 0.75; transition: opacity 0.25s; }
 .nav__links a:hover, .nav__links a:focus-visible { opacity: 1; }
 .nav__cta { opacity: 1 !important; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
-@media (max-width: 40rem) { .nav__links a:not(.nav__cta) { display: none; } }
+@media (max-width: 40rem) {
+  .nav { padding: 1.1rem var(--pad); }
+  .nav__links { gap: 1.4rem; font-size: 0.7rem; }
+}
 
 /* ————— hero ————— */
 .hero {
@@ -696,6 +699,11 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 }
 .kept-split__copy { margin-top: 2rem; color: var(--grey-on-paper); }
 .kept-split__copy p + p { margin-top: 1rem; }
+.kept-services {
+  background: var(--paper);
+  padding-block: clamp(4.5rem, 10vh, 8rem);
+}
+.kept-services .eyebrow { margin-bottom: clamp(2rem, 4vw, 3rem); }
 .kept-how {
   background: var(--paper-dim);
   padding-block: clamp(5rem, 11vh, 9rem);
@@ -719,6 +727,24 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   font-size: 0.95rem;
   max-width: 24rem;
 }
+
+/* kept — responsive rhythm */
+@media (max-width: 55.99rem) {
+  .kept-hero { min-height: 72svh; padding-block: clamp(7rem, 14vh, 9rem) clamp(3.5rem, 8vh, 5rem); }
+  .kept-split__media img,
+  .kept .inhabit__media img { min-height: 0; height: 46svh; }
+  .kept-split__text,
+  .kept .inhabit__text { padding-block: clamp(3rem, 8vw, 4.5rem); }
+}
+
+/* reserve page */
+.close--page {
+  min-height: 92svh;
+  display: grid;
+  align-items: center;
+  padding-block: clamp(8rem, 16vh, 11rem) clamp(5rem, 10vh, 7rem);
+}
+.close--page .eyebrow { margin-bottom: 1.6rem; }
 
 /* ————— close ————— */
 .close {
