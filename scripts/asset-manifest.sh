@@ -58,6 +58,10 @@ img .assets-tmp/wgym.png assets/img/well-gym.jpg 1600
 fetch "$HF/hf_20260901_185754_d8f4363f-0175-4e67-b3bc-d1ccdc6bb0dc.png" .assets-tmp/wgar.png
 img .assets-tmp/wgar.png assets/img/well-garden.jpg 1600
 
+# ————— kept (owner's service page): arrival kitchen —————
+fetch "$HF/hf_20260902_143830_5fb47911-1723-485c-b11d-7f9c5cdda16e.png" .assets-tmp/kept.png
+img .assets-tmp/kept.png assets/img/kept-arrival.jpg 1600
+
 # ————— bleed + inhabit (editorial set) —————
 fetch "$HF/hf_20260901_103633_5e7a2fce-d6c8-4f4c-8116-57c268aa1be6.png" .assets-tmp/walk.png
 img .assets-tmp/walk.png assets/img/walk.jpg 2400
