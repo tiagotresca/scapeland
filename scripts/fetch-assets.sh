@@ -10,7 +10,7 @@ mkdir -p assets/img assets/media .assets-tmp
 
 fetch() { # $1 url  $2 out
   echo "fetching $2"
-  curl -fsSL "$1" -o "$2"
+  curl -fsSL --retry 3 --retry-delay 5 --max-time 300 "$1" -o "$2"
 }
 
 drive() { # $1 file id  $2 out
