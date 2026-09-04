@@ -17,9 +17,10 @@ drive() { # $1 file id  $2 out
   fetch "https://drive.usercontent.google.com/download?id=$1&export=download&confirm=t" "$2"
 }
 
-# img <src> <dest> <max-width>
+# img <src> <dest> <max-width> — resize, then apply the brand film grade
 img() {
-  convert "$1" -auto-orient -resize "${3}x>" -strip -interlace Plane -quality 80 "$2"
+  convert "$1" -auto-orient -resize "${3}x>" -strip -interlace Plane -quality 92 "$2"
+  python3 scripts/grade.py "$2" > /dev/null
   echo "wrote $2 ($(du -h "$2" | cut -f1))"
 }
 

@@ -15,13 +15,15 @@ img .assets-tmp/hero.png assets/img/hero.jpg 2400
 # encodes are kept and only the images update.
 if fetch "https://drive.usercontent.google.com/download?id=1pLeMb5ifd767ODI4QA7ZZjlnNtlRY8jl&export=download&confirm=t" .assets-tmp/motion-src.mp4 \
    && [ "$(stat -c%s .assets-tmp/motion-src.mp4)" -gt 10000000 ]; then
+  # the same vintage film grade the stills get (see scripts/grade.py)
+  GRADE="curves=r='0/0.11 1/0.97':g='0/0.10 1/0.95':b='0/0.14 1/0.87',eq=saturation=0.82:contrast=0.95,colorbalance=rm=0.03:bm=-0.04"
   # desktop: native 1080p, high quality
   ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
-    -vf "scale=1920:-2" -c:v libx264 -crf 23 -preset slow -profile:v high -movflags +faststart \
+    -vf "scale=1920:-2,$GRADE" -c:v libx264 -crf 23 -preset slow -profile:v high -movflags +faststart \
     assets/media/motion.mp4
   # mobile: lighter rendition, swapped in by main.js on small screens
   ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
-    -vf "scale=960:-2" -c:v libx264 -crf 25 -preset slow -movflags +faststart \
+    -vf "scale=960:-2,$GRADE" -c:v libx264 -crf 25 -preset slow -movflags +faststart \
     assets/media/motion-mobile.mp4
 else
   echo "WARN: motion source unavailable this run; keeping committed encodes"
