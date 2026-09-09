@@ -90,20 +90,24 @@ var DIAL_CODES = [
      so every image passes through the viewport. */
   var glt = document.getElementById('glt');
   var strip = glt && glt.querySelector('.solid__figures');
+  var gltSticky = glt && glt.querySelector('.glt__sticky');
   var mqMobile = window.matchMedia('(max-width: 47.99rem)');
   var gltMax = 0;
 
   /* Measure the horizontal travel with the transform cleared (Safari can
      misreport scrollWidth on transformed elements) and give the track
-     exactly viewport + travel of height, so the pin releases the moment
-     the last figure is fully on screen. */
+     exactly sticky + travel of height, so the pin releases the moment the
+     last figure is fully on screen. The sticky's own height (100svh) is the
+     reference — window.innerHeight grows when iOS collapses its toolbar,
+     which used to leave a dead pinned stretch after the last image. */
   function gltMeasure() {
     if (!glt.classList.contains('glt--active')) return;
     var prev = strip.style.transform;
     strip.style.transform = 'none';
     gltMax = Math.max(0, strip.scrollWidth - document.documentElement.clientWidth);
     strip.style.transform = prev;
-    glt.style.height = (window.innerHeight + gltMax) + 'px';
+    var pinH = gltSticky ? gltSticky.offsetHeight : window.innerHeight;
+    glt.style.height = (pinH + gltMax) + 'px';
   }
 
   function gltMode() {
