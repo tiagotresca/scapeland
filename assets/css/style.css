@@ -131,7 +131,8 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 .nav__cta { opacity: 1 !important; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 @media (max-width: 40rem) {
   .nav { padding: 1.1rem var(--pad); }
-  .nav__links { gap: 1.4rem; font-size: 0.7rem; }
+  .nav__mark svg { height: 9px; }
+  .nav__links { gap: 1.1rem; font-size: 0.66rem; letter-spacing: 0.16em; }
 }
 
 /* ————— hero ————— */
