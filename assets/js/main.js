@@ -129,24 +129,55 @@ var DIAL_CODES = [
     }
   }
 
-  /* Hero film: pause under reduced motion; otherwise play only while visible. */
+  /* Hero film: must autoplay everywhere. iOS only allows it when the element
+     is muted + inline at play() time, and Low Power Mode rejects even that —
+     so re-assert the properties, retry on the first gesture, and pause only
+     while scrolled out of view. */
   if (video) {
-    if (reduced) {
-      video.removeAttribute('autoplay');
-      video.pause();
-    } else if ('IntersectionObserver' in window) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.controls = false;
+
+    var heroVisible = true;
+    function tryPlay() {
+      if (!heroVisible || !video.paused) return;
+      var p = video.play();
+      if (p && p.catch) p.catch(function () { /* blocked — gesture retry below */ });
+    }
+
+    if ('IntersectionObserver' in window) {
       var vio = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            var p = video.play();
-            if (p && p.catch) p.catch(function () { /* autoplay blocked — poster stays */ });
-          } else {
-            video.pause();
-          }
+          heroVisible = e.isIntersecting;
+          if (e.isIntersecting) tryPlay();
+          else video.pause();
         });
       }, { threshold: 0.1 });
       vio.observe(video);
     }
+
+    /* Low Power Mode / strict autoplay: start on the first interaction. */
+    var gestureEvents = ['touchstart', 'touchend', 'click', 'scroll'];
+    function onFirstGesture() {
+      tryPlay();
+      if (!video.paused) {
+        gestureEvents.forEach(function (ev) {
+          window.removeEventListener(ev, onFirstGesture);
+        });
+      }
+    }
+    gestureEvents.forEach(function (ev) {
+      window.addEventListener(ev, onFirstGesture, { passive: true });
+    });
+
+    window.addEventListener('pageshow', tryPlay);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) tryPlay();
+    });
+    tryPlay();
   }
 
   /* Reserve form */

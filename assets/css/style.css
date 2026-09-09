@@ -124,6 +124,15 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   width: 100%; height: 100%;
   object-fit: cover;
 }
+/* iOS paints a play glyph over paused inline video — keep it off the hero. */
+.hero__img::-webkit-media-controls,
+.hero__img::-webkit-media-controls-start-playback-button,
+.hero__img::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0;
+  pointer-events: none;
+}
 .hero__veil {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(20,20,18,0.72) 0%, rgba(20,20,18,0.18) 45%, rgba(20,20,18,0.30) 100%);
