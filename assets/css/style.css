@@ -1,6 +1,6 @@
 /* ————————————————————————————————————————————————
    Scapeland — institutional site
-   Palette:  ink #141412 · paper #F5F2EC · terra #A8624D
+   Palette:  ink #141412 · paper #F5F2EC · lime #C3F23C (accent) · terra #A8624D (support)
    Type:     Space Grotesk (display) · Inter (body) · Source Serif 4 (editorial)
    ———————————————————————————————————————————————— */
 
@@ -9,6 +9,7 @@
   --ink-soft: #1d1c19;
   --paper: #F5F2EC;
   --paper-dim: #EAE6DD;
+  --lime: #C3F23C;
   --terra: #A8624D;
   --stone: #9A8F7A;
   --grey-on-paper: #6E675C;
@@ -37,7 +38,7 @@ body {
 
 img, video { max-width: 100%; display: block; }
 
-::selection { background: var(--terra); color: var(--paper); }
+::selection { background: var(--lime); color: var(--ink); }
 
 a { color: inherit; }
 
@@ -60,6 +61,17 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 .eyebrow--paper { color: var(--stone); }
+/* Lime accent tick above section kickers — the brand's contemporary signal,
+   kept to a small graphic detail per the brand book. */
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 4px;
+  background: var(--lime);
+  margin-bottom: 1.1rem;
+}
+.close .eyebrow::before { margin-inline: auto; }
 
 /* ————— reveal on scroll ————— */
 .reveal {
@@ -177,11 +189,20 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 }
 .hero__title em { font-weight: 400; }
 .hero__sub {
-  margin-top: 1.8rem;
+  margin-top: 1.6rem;
   max-width: 34rem;
   font-size: clamp(1rem, 1.4vw, 1.15rem);
   color: rgba(245,242,236,0.82);
   animation: heroIn 1.1s 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+/* Lime accent between title and sub, echoing the brand book cover. */
+.hero__sub::before {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 4px;
+  background: var(--lime);
+  margin-bottom: 1.2rem;
 }
 .hero__scroll {
   position: absolute;
@@ -846,7 +867,8 @@ em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 select.reserve__input { cursor: pointer; }
 .reserve__input:focus {
   outline: none;
-  border-bottom-color: var(--terra);
+  border-bottom-color: var(--lime);
+  border-bottom-width: 2px;
 }
 .reserve__error {
   margin-top: 1.4rem;
@@ -857,12 +879,8 @@ select.reserve__input { cursor: pointer; }
 .reserve__submit.close__cta {
   display: block;
   margin: 2.6rem auto 0;
-  background: transparent;
   cursor: pointer;
   font-family: var(--display);
-}
-.reserve__submit.close__cta:hover, .reserve__submit.close__cta:focus-visible {
-  background: var(--terra);
 }
 .reserve__submit[disabled] { opacity: 0.5; cursor: wait; }
 .reserve__done { margin-top: 3.5rem; }
@@ -888,12 +906,13 @@ select.reserve__input { cursor: pointer; }
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--lime);
+  border: 1px solid var(--lime);
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 .close__cta:hover, .close__cta:focus-visible {
-  background: var(--terra);
-  border-color: var(--terra);
+  background: var(--ink);
+  border-color: var(--ink);
   color: var(--paper);
 }
 
