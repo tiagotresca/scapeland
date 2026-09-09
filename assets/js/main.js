@@ -120,10 +120,11 @@ var DIAL_CODES = [
     window.addEventListener('load', gltRefresh);
   }
 
-  /* Hero film: lighter rendition on small screens (swap before it loads). */
+  /* Hero film: the vertical cut on small screens (swap before it loads). */
   if (video && window.matchMedia('(max-width: 47.99rem)').matches) {
     var heroSrc = video.getAttribute('src');
     if (heroSrc && heroSrc.indexOf('motion.mp4') !== -1) {
+      video.poster = video.getAttribute('poster').replace('motion-poster.jpg', 'motion-poster-mobile.jpg');
       video.src = heroSrc.replace('motion.mp4', 'motion-mobile.mp4');
     }
   }
