@@ -50,6 +50,23 @@ var DIAL_CODES = [
     revealEls.forEach(function (el) { el.classList.add('is-in'); });
   }
 
+  /* White header plate — fades in after half the hero has scrolled past. */
+  var nav = document.querySelector('.nav');
+  var navBg = document.querySelector('.nav-bg');
+  if (nav && navBg) {
+    var navHero = document.querySelector('.hero, .kept-hero');
+    function navBgSize() { navBg.style.height = nav.offsetHeight + 'px'; }
+    function navBgScroll() {
+      var threshold = (navHero ? navHero.offsetHeight : window.innerHeight) / 2;
+      navBg.classList.toggle('is-solid', window.scrollY > threshold);
+    }
+    navBgSize();
+    navBgScroll();
+    window.addEventListener('scroll', navBgScroll, { passive: true });
+    window.addEventListener('resize', function () { navBgSize(); navBgScroll(); }, { passive: true });
+    window.addEventListener('load', navBgSize);
+  }
+
   /* Motion section — sticky media with two panels */
   var track = document.querySelector('.motion__track');
   var video = document.querySelector('video.hero__img');
