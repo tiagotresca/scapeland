@@ -10,24 +10,10 @@ HF=https://d8j0ntlcm91z4.cloudfront.net/user_3DHR71Nhb8BxDxiD3b5RHP9REhm
 drive 1ewv6F4fDF5l6NJ1_PsPoOP4fA5Ljptk0 .assets-tmp/hero.png
 img .assets-tmp/hero.png assets/img/hero.jpg 2400
 
-# ————— hero/motion loop: aerial drone over the montado (Drive v1) —————
-# A failed/throttled Drive download must not sink the run: the committed
-# encodes are kept and only the images update.
-if fetch "https://drive.usercontent.google.com/download?id=1pLeMb5ifd767ODI4QA7ZZjlnNtlRY8jl&export=download&confirm=t" .assets-tmp/motion-src.mp4 \
-   && [ "$(stat -c%s .assets-tmp/motion-src.mp4)" -gt 10000000 ]; then
-  # the same vintage film grade the stills get (see scripts/grade.py)
-  GRADE="curves=r='0/0.11 1/0.97':g='0/0.10 1/0.95':b='0/0.14 1/0.87',eq=saturation=0.82:contrast=0.95,colorbalance=rm=0.03:bm=-0.04,format=yuv420p"
-  # desktop: native 1080p, high quality
-  ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
-    -vf "scale=1920:-2,$GRADE" -c:v libx264 -crf 23 -preset slow -profile:v high -movflags +faststart \
-    assets/media/motion.mp4
-  # mobile: lighter rendition, swapped in by main.js on small screens
-  ffmpeg -y -i .assets-tmp/motion-src.mp4 -an \
-    -vf "scale=960:-2,$GRADE" -c:v libx264 -crf 25 -preset slow -movflags +faststart \
-    assets/media/motion-mobile.mp4
-else
-  echo "WARN: motion source unavailable this run; keeping committed encodes"
-fi
+# ————— hero loop —————
+# motion.mp4 / motion-mobile.mp4 / motion-poster.jpg are committed directly
+# (source: Scapeland_Website_Loop.mp4 from the team, already graded in the
+# brand look). Do not re-fetch or re-encode them here.
 
 # ————— motion section still: House 01 twilight facade —————
 drive 19Iher5FGsC9_KFWUJnS8L-ifG5qQfRdC .assets-tmp/motion-bg.png
